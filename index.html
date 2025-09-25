@@ -412,7 +412,7 @@
 
                 // Switch to correct network
                 await switchToNetwork(network);
-                console.log('Network switched successfully'); 
+                console.log('Network switched successfully');
 
                 // Create payment
                 const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -523,6 +523,11 @@
                     userAccount
                 });
 
+                let contractAddress = currentPayment.contractAddress;
+                if (network === 'optimism' && contractAddress === '0x48E967d182F744EdB18AcA7092814f1FE17fcB2d') {
+                    throw new Error('Optimism contract not deployed. Using Ethereum contract address.');
+                }
+
                 const approveTx = await tokenContract.methods
                     .approve(currentPayment.contractAddress, amountWei)
                     .send({ from: userAccount });
@@ -549,7 +554,8 @@
                     }
                 ];
 
-                const splitterContract = new web3.eth.Contract(splitterABI, currentPayment.contractAddress);
+                const splitterContract = new web3.eth.Contract(splitterABI, contractAddress);
+                // const splitterContract = new web3.eth.Contract(splitterABI, currentPayment.contractAddress);
 
                 const paymentTx = await splitterContract.methods
                     .splitPayment(
