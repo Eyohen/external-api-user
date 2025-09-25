@@ -213,6 +213,7 @@
         // Configuration
         const COINLEY_CONFIG = {
             baseURL: 'https://talented-mercy-production.up.railway.app',
+            // baseURL: 'http://localhost:9000',
             apiKey: 'afb78ff958350b9067798dd077c28459',
             apiSecret: 'c22d3879eff18c2d3f8f8a61d4097c230a940356a3d139ffceee11ba65b1a34c'
         };
@@ -411,9 +412,11 @@
 
                 // Switch to correct network
                 await switchToNetwork(network);
+                console.log('Network switched successfully'); 
 
                 // Create payment
                 const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                console.log('About to create payment:', { total, currency, network });
 
                 const response = await axios.post(`${COINLEY_CONFIG.baseURL}/api/payments/create`, {
                     amount: total.toFixed(2),
@@ -435,6 +438,7 @@
 
                 if (response.data.success) {
                     currentPayment = response.data.payment;
+                    console.log('Payment created:', currentPayment);
                     closeCart();
                     showPaymentModal();
                     await executePayment();
@@ -511,6 +515,14 @@
 
                 // Step 1: Approve
                 updateStatus('Approve spending in Zerion...', 'yellow');
+
+                console.log('About to approve:', {
+                    tokenAddress,
+                    contractAddress: currentPayment.contractAddress,
+                    amountWei,
+                    userAccount
+                });
+
                 const approveTx = await tokenContract.methods
                     .approve(currentPayment.contractAddress, amountWei)
                     .send({ from: userAccount });
