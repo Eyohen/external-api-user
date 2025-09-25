@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,21 +13,26 @@
         .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
+
         .card-hover {
             transition: all 0.3s ease;
         }
+
         .card-hover:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
         }
+
         .loading {
             display: none;
         }
+
         .loading.active {
             display: inline-block;
         }
     </style>
 </head>
+
 <body class="bg-gray-50">
     <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
@@ -41,7 +47,8 @@
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="#events" class="text-gray-600 hover:text-blue-600 transition-colors">Events</a>
                     <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors">About</a>
-                    <button id="cartBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <button id="cartBtn"
+                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                         Cart (<span id="cartCount">0</span>)
                     </button>
                 </div>
@@ -53,8 +60,10 @@
     <section class="gradient-bg py-20 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-5xl font-bold mb-6">Premium Sports Tickets</h1>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Experience the thrill of live sports. Pay securely with cryptocurrency through Coinley.</p>
-            <button onclick="scrollToEvents()" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Experience the thrill of live sports. Pay securely with
+                cryptocurrency through Coinley.</p>
+            <button onclick="scrollToEvents()"
+                class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
                 Browse Events
             </button>
         </div>
@@ -81,31 +90,34 @@
                             <i class="fas fa-times text-xl"></i>
                         </button>
                     </div>
-                    
+
                     <div id="cartItems" class="space-y-4 mb-6">
                         <!-- Cart items populated here -->
                     </div>
-                    
+
                     <div class="border-t pt-4">
                         <div class="flex justify-between items-center mb-6">
                             <span class="text-xl font-bold">Total: $<span id="cartTotal">0.00</span></span>
                         </div>
-                        
+
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                                <input type="email" id="customerEmail" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="your@email.com" required>
+                                <input type="email" id="customerEmail"
+                                    class="w-full border border-gray-300 rounded-lg px-3 py-2"
+                                    placeholder="your@email.com" required>
                             </div>
-                            
+
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Payment Network</label>
                                 <select id="paymentNetwork" class="w-full border border-gray-300 rounded-lg px-3 py-2">
                                     <option value="ethereum">Ethereum</option>
                                     <option value="polygon">Polygon</option>
                                     <option value="bsc">Binance Smart Chain</option>
+                                    <option value="optimism">Optimism</option>
                                 </select>
                             </div>
-                            
+
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Currency</label>
                                 <select id="paymentCurrency" class="w-full border border-gray-300 rounded-lg px-3 py-2">
@@ -113,8 +125,9 @@
                                     <option value="USDC">USDC</option>
                                 </select>
                             </div>
-                            
-                            <button onclick="connectZerionAndPay()" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
+
+                            <button onclick="connectZerionAndPay()"
+                                class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
                                 <span class="loading" id="paymentLoading">
                                     <i class="fas fa-spinner fa-spin mr-2"></i>
                                 </span>
@@ -138,13 +151,14 @@
                             <i class="fas fa-wallet text-blue-600 text-2xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold mb-2">Processing Payment</h3>
-                        <p class="text-gray-600">$<span id="paymentAmount">0.00</span> via <span id="paymentCurrencyDisplay">USDT</span></p>
+                        <p class="text-gray-600">$<span id="paymentAmount">0.00</span> via <span
+                                id="paymentCurrencyDisplay">USDT</span></p>
                     </div>
-                    
+
                     <div id="walletStatus" class="mb-6">
                         <!-- Status updated by JavaScript -->
                     </div>
-                    
+
                     <div id="paymentSteps" class="space-y-4 mb-6">
                         <div class="flex items-center space-x-3">
                             <div id="step1" class="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
@@ -165,8 +179,9 @@
                             <span class="text-sm">Verify payment</span>
                         </div>
                     </div>
-                    
-                    <button onclick="closePaymentModal()" class="w-full border border-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+
+                    <button onclick="closePaymentModal()"
+                        class="w-full border border-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-50 transition-colors">
                         Cancel
                     </button>
                 </div>
@@ -183,8 +198,10 @@
                         <i class="fas fa-check text-green-600 text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Payment Successful!</h3>
-                    <p class="text-gray-600 mb-6">Your tickets have been purchased. Check your email for confirmation.</p>
-                    <button onclick="closeSuccessModal()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <p class="text-gray-600 mb-6">Your tickets have been purchased. Check your email for confirmation.
+                    </p>
+                    <button onclick="closeSuccessModal()"
+                        class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                         Close
                     </button>
                 </div>
@@ -195,7 +212,7 @@
     <script>
         // Configuration
         const COINLEY_CONFIG = {
-           baseURL: 'https://talented-mercy-production.up.railway.app',
+            baseURL: 'https://talented-mercy-production.up.railway.app',
             apiKey: 'afb78ff958350b9067798dd077c28459',
             apiSecret: 'c22d3879eff18c2d3f8f8a61d4097c230a940356a3d139ffceee11ba65b1a34c'
         };
@@ -204,7 +221,8 @@
         const NETWORK_CONFIG = {
             ethereum: { chainId: '0x1', name: 'Ethereum' },
             polygon: { chainId: '0x89', name: 'Polygon' },
-            bsc: { chainId: '0x38', name: 'BSC' }
+            bsc: { chainId: '0x38', name: 'BSC' },
+            optimism: { chainId: '0xa', name: 'Optimism' }
         };
 
         // Token addresses
@@ -220,7 +238,13 @@
             bsc: {
                 USDT: '0x55d398326f99059fF775485246999027B3197955',
                 USDC: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d'
+            },
+            optimism: {
+                USDT: '0x94b008aA00579c1307B0EF2c499aD98a8ce58e58',
+                USDC: '0x7F5c764cBc14f9669B88837ca1490cCa17c31607'
             }
+
+
         };
 
         // Sample events
@@ -260,7 +284,7 @@
         let userAccount = null;
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             loadEvents();
             updateCartUI();
         });
@@ -288,7 +312,7 @@
         function addToCart(eventId) {
             const event = sampleEvents.find(e => e.id === eventId);
             const existingItem = cart.find(item => item.id === eventId);
-            
+
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
@@ -300,16 +324,16 @@
         function updateCartUI() {
             const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
             document.getElementById('cartCount').textContent = cartCount;
-            
+
             const cartItems = document.getElementById('cartItems');
             const cartTotal = document.getElementById('cartTotal');
-            
+
             if (cart.length === 0) {
                 cartItems.innerHTML = '<p class="text-gray-500 text-center py-8">Your cart is empty</p>';
                 cartTotal.textContent = '0.00';
                 return;
             }
-            
+
             cartItems.innerHTML = cart.map(item => `
                 <div class="flex justify-between items-center p-4 border rounded-lg">
                     <div>
@@ -328,7 +352,7 @@
                     </div>
                 </div>
             `).join('');
-            
+
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             cartTotal.textContent = total.toFixed(2);
         }
@@ -349,48 +373,48 @@
             const email = document.getElementById('customerEmail').value;
             const network = document.getElementById('paymentNetwork').value;
             const currency = document.getElementById('paymentCurrency').value;
-            
+
             if (!email) {
                 alert('Please enter your email address');
                 return;
             }
-            
+
             if (cart.length === 0) {
                 alert('Your cart is empty');
                 return;
             }
-            
+
             const loading = document.getElementById('paymentLoading');
             loading.classList.add('active');
-            
+
             try {
                 // Check for Ethereum provider (Zerion)
                 if (typeof window.ethereum === 'undefined') {
                     alert('Please install Zerion wallet extension');
                     return;
                 }
-                
+
                 // Initialize Web3
                 web3 = new Web3(window.ethereum);
-                
+
                 // Request account access
                 const accounts = await window.ethereum.request({
                     method: 'eth_requestAccounts'
                 });
                 console.log('Accounts received:', accounts);
-                
+
                 if (!accounts || accounts.length === 0) {
                     throw new Error('No accounts found');
                 }
-                
+
                 userAccount = accounts[0];
-                
+
                 // Switch to correct network
                 await switchToNetwork(network);
-                
+
                 // Create payment
                 const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                
+
                 const response = await axios.post(`${COINLEY_CONFIG.baseURL}/api/payments/create`, {
                     amount: total.toFixed(2),
                     currency: currency,
@@ -408,7 +432,7 @@
                         'Content-Type': 'application/json'
                     }
                 });
-                
+
                 if (response.data.success) {
                     currentPayment = response.data.payment;
                     closeCart();
@@ -417,7 +441,7 @@
                 } else {
                     alert('Payment creation failed: ' + response.data.message);
                 }
-                
+
             } catch (error) {
                 console.error('Payment error:', error);
                 alert('Payment failed: ' + error.message);
@@ -429,7 +453,7 @@
         async function switchToNetwork(network) {
             const config = NETWORK_CONFIG[network];
             if (!config) return;
-            
+
             try {
                 await window.ethereum.request({
                     method: 'wallet_switchEthereumChain',
@@ -445,76 +469,76 @@
             try {
                 updateStep(1, 'loading');
                 updateStatus('Preparing transaction...', 'blue');
-                
+
                 const network = currentPayment.network;
                 const currency = currentPayment.currency;
                 const amount = parseFloat(currentPayment.amount);
-                
+
                 const tokenAddress = TOKEN_CONTRACTS[network][currency];
                 if (!tokenAddress) {
                     throw new Error(`${currency} not supported on ${network}`);
                 }
-                
+
                 // Convert to wei (6 decimals for USDT/USDC)
                 const decimals = 6;
                 const amountWei = Math.floor(amount * Math.pow(10, decimals)).toString();
-                
+
                 // ERC20 contract ABI
                 const erc20ABI = [
                     {
                         "constant": false,
                         "inputs": [
-                            {"name": "_spender", "type": "address"},
-                            {"name": "_value", "type": "uint256"}
+                            { "name": "_spender", "type": "address" },
+                            { "name": "_value", "type": "uint256" }
                         ],
                         "name": "approve",
-                        "outputs": [{"name": "", "type": "bool"}],
+                        "outputs": [{ "name": "", "type": "bool" }],
                         "type": "function"
                     },
                     {
                         "constant": false,
                         "inputs": [
-                            {"name": "_to", "type": "address"},
-                            {"name": "_value", "type": "uint256"}
+                            { "name": "_to", "type": "address" },
+                            { "name": "_value", "type": "uint256" }
                         ],
                         "name": "transfer",
-                        "outputs": [{"name": "", "type": "bool"}],
+                        "outputs": [{ "name": "", "type": "bool" }],
                         "type": "function"
                     }
                 ];
-                
+
                 const tokenContract = new web3.eth.Contract(erc20ABI, tokenAddress);
-                
+
                 // Step 1: Approve
                 updateStatus('Approve spending in Zerion...', 'yellow');
                 const approveTx = await tokenContract.methods
                     .approve(currentPayment.contractAddress, amountWei)
                     .send({ from: userAccount });
-                
+
                 updateStep(1, 'completed');
                 updateStep(2, 'loading');
                 updateStatus('Executing payment...', 'blue');
-                
+
                 // Step 2: Execute PaymentSplitter
                 const splitterABI = [
                     {
                         "inputs": [
-                            {"name": "token", "type": "address"},
-                            {"name": "amount", "type": "uint256"},
-                            {"name": "paymentId", "type": "string"},
-                            {"name": "merchant", "type": "address"},
-                            {"name": "coinley", "type": "address"},
-                            {"name": "merchantBps", "type": "uint256"},
-                            {"name": "coinleyBps", "type": "uint256"}
+                            { "name": "token", "type": "address" },
+                            { "name": "amount", "type": "uint256" },
+                            { "name": "paymentId", "type": "string" },
+                            { "name": "merchant", "type": "address" },
+                            { "name": "coinley", "type": "address" },
+                            { "name": "merchantBps", "type": "uint256" },
+                            { "name": "coinleyBps", "type": "uint256" }
                         ],
                         "name": "splitPayment",
                         "outputs": [],
                         "type": "function"
                     }
                 ];
-                
+
                 const splitterContract = new web3.eth.Contract(splitterABI, currentPayment.contractAddress);
-                
+
                 const paymentTx = await splitterContract.methods
                     .splitPayment(
                         tokenAddress,
@@ -526,24 +550,24 @@
                         currentPayment.coinleyPercentage
                     )
                     .send({ from: userAccount });
-                
+
                 updateStep(2, 'completed');
                 updateStep(3, 'loading');
                 updateStatus('Verifying payment...', 'blue');
-                
+
                 // Step 3: Verify
                 await verifyPayment(paymentTx.transactionHash);
-                
+
                 updateStep(3, 'completed');
                 updateStatus('Payment successful!', 'green');
-                
+
                 setTimeout(() => {
                     closePaymentModal();
                     showSuccessModal();
                     cart = [];
                     updateCartUI();
                 }, 2000);
-                
+
             } catch (error) {
                 console.error('Payment execution failed:', error);
                 updateStatus('Payment failed: ' + error.message, 'red');
@@ -563,7 +587,7 @@
                     'Content-Type': 'application/json'
                 }
             });
-            
+
             if (!response.data.success) {
                 throw new Error(response.data.error || 'Verification failed');
             }
@@ -572,7 +596,7 @@
         function updateStep(stepNum, status) {
             const step = document.getElementById(`step${stepNum}`);
             step.className = 'w-6 h-6 rounded-full flex items-center justify-center';
-            
+
             if (status === 'loading') {
                 step.className += ' bg-blue-500 text-white';
                 step.innerHTML = '<i class="fas fa-spinner fa-spin text-xs"></i>';
@@ -592,7 +616,7 @@
                 yellow: 'bg-yellow-50 text-yellow-800 border-yellow-200',
                 red: 'bg-red-50 text-red-800 border-red-200'
             };
-            
+
             document.getElementById('walletStatus').innerHTML = `
                 <div class="p-4 rounded-lg border ${colors[color]}">
                     <p class="text-sm font-medium">${message}</p>
@@ -632,7 +656,7 @@
         }
 
         // Close modals on outside click
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.classList.contains('bg-black')) {
                 closeCart();
                 closePaymentModal();
@@ -641,4 +665,5 @@
         });
     </script>
 </body>
+
 </html>
