@@ -616,15 +616,41 @@
 
                 const tokenContract = new web3.eth.Contract(erc20ABI, tokenData.contractAddress);
 
+                // updateStatus('Checking token allowance...', 'blue');
+
+                // // Check existing allowance first to avoid unnecessary approval
+                // const existingAllowance = await tokenContract.methods
+                //     .allowance(userAccount, currentPayment.contractAddress)
+                //     .call();
+
+                // console.log('Existing allowance:', existingAllowance);
+                // console.log('Required amount:', amountWei);
+
+                    // ✅ CHECK BALANCE FIRST - Critical fix for "exceeds balance" error
+                updateStatus('Checking wallet balance...', 'blue');
+                
+                const userBalance = await tokenContract.methods.balanceOf(userAccount).call();
+                const userBalanceDecimal = parseFloat(userBalance) / Math.pow(10, decimals);
+                
+                console.log('💰 Balance Check:', {
+                    requiredAmount: amount,
+                    walletBalance: userBalanceDecimal,
+                    token: currency,
+                    sufficient: userBalanceDecimal >= amount
+                });
+
+                if (userBalanceDecimal < amount) {
+                    const shortfall = (amount - userBalanceDecimal).toFixed(2);
+                    throw new Error(
+                        `Insufficient ${currency} balance!\n\n` +
+                        `Required: ${amount} ${currency}\n` +
+                        `Available: ${userBalanceDecimal.toFixed(2)} ${currency}\n` +
+                        `Shortfall: ${shortfall} ${currency}\n\n` +
+                        `Please add more ${currency} to your wallet or reduce cart amount.`
+                    );
+                }
+
                 updateStatus('Checking token allowance...', 'blue');
-
-                // Check existing allowance first to avoid unnecessary approval
-                const existingAllowance = await tokenContract.methods
-                    .allowance(userAccount, currentPayment.contractAddress)
-                    .call();
-
-                console.log('Existing allowance:', existingAllowance);
-                console.log('Required amount:', amountWei);
 
                 if (BigInt(existingAllowance) < BigInt(amountWei)) {
                     console.log('Insufficient allowance, requesting approval...');
