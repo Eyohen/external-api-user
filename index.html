@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,29 @@
     <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .card-hover { transition: all 0.3s ease; }
-        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1); }
-        .loading { display: none; }
-        .loading.active { display: inline-block; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .loading {
+            display: none;
+        }
+
+        .loading.active {
+            display: inline-block;
+        }
     </style>
 </head>
+
 <body class="bg-gray-50">
     <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
@@ -30,7 +47,8 @@
                 <div class="hidden md:flex items-center space-x-6">
                     <a href="#events" class="text-gray-600 hover:text-blue-600 transition-colors">Events</a>
                     <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors">About</a>
-                    <button id="cartBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <button id="cartBtn"
+                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                         Cart (<span id="cartCount">0</span>)
                     </button>
                 </div>
@@ -42,8 +60,10 @@
     <section class="gradient-bg py-20 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-5xl font-bold mb-6">Premium Sports Tickets</h1>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Experience the thrill of live sports. Pay securely with cryptocurrency.</p>
-            <button onclick="scrollToEvents()" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Experience the thrill of live sports. Pay securely with
+                cryptocurrency.</p>
+            <button onclick="scrollToEvents()"
+                class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
                 Browse Events
             </button>
         </div>
@@ -79,7 +99,9 @@
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                                <input type="email" id="customerEmail" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="your@email.com" required>
+                                <input type="email" id="customerEmail"
+                                    class="w-full border border-gray-300 rounded-lg px-3 py-2"
+                                    placeholder="your@email.com" required>
                             </div>
 
                             <div>
@@ -87,8 +109,10 @@
                                 <select id="paymentNetwork" class="w-full border border-gray-300 rounded-lg px-3 py-2">
                                     <option value="">Loading networks...</option>
                                 </select>
-                                <div id="networkWarning" class="hidden mt-2 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-800">
-                                    ⚠️ This network may have higher fees ($3-5) for small transactions. Consider using Polygon for better rates.
+                                <div id="networkWarning"
+                                    class="hidden mt-2 p-2 bg-yellow-50 border border-yellow-200 rounded text-xs text-yellow-800">
+                                    ⚠️ This network may have higher fees ($3-5) for small transactions. Consider using
+                                    Polygon for better rates.
                                 </div>
                             </div>
 
@@ -99,7 +123,8 @@
                                 </select>
                             </div>
 
-                            <div id="optimismOptimization" class="hidden mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <div id="optimismOptimization"
+                                class="hidden mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                                 <p class="text-sm font-medium text-blue-800 mb-2">💡 Gas Optimization Available</p>
                                 <label class="flex items-center space-x-2 text-sm text-blue-700">
                                     <input type="checkbox" id="useDirectTransfer" class="rounded">
@@ -108,8 +133,10 @@
                                 <p class="text-xs text-blue-600 mt-1">Direct: ~$0.05 | Splitter: ~$0.61</p>
                             </div>
 
-                            <button onclick="connectMetaMaskAndPay()" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
-                                <span class="loading" id="paymentLoading"><i class="fas fa-spinner fa-spin mr-2"></i></span>
+                            <button onclick="connectMetaMaskAndPay()"
+                                class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                                <span class="loading" id="paymentLoading"><i
+                                        class="fas fa-spinner fa-spin mr-2"></i></span>
                                 <i class="fas fa-wallet mr-2"></i>Connect MetaMask & Pay
                             </button>
                         </div>
@@ -129,7 +156,8 @@
                             <i class="fas fa-wallet text-blue-600 text-2xl"></i>
                         </div>
                         <h3 class="text-2xl font-bold mb-2">Processing Payment</h3>
-                        <p class="text-gray-600">$<span id="paymentAmount">0.00</span> via <span id="paymentCurrencyDisplay">USDT</span></p>
+                        <p class="text-gray-600">$<span id="paymentAmount">0.00</span> via <span
+                                id="paymentCurrencyDisplay">USDT</span></p>
                     </div>
 
                     <div id="walletStatus" class="mb-6"></div>
@@ -155,7 +183,8 @@
                         </div>
                     </div>
 
-                    <button onclick="closePaymentModal()" class="w-full border border-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                    <button onclick="closePaymentModal()"
+                        class="w-full border border-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-50 transition-colors">
                         Cancel
                     </button>
                 </div>
@@ -172,8 +201,10 @@
                         <i class="fas fa-check text-green-600 text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-2">Payment Successful!</h3>
-                    <p class="text-gray-600 mb-6">Your tickets have been purchased. Check your email for confirmation.</p>
-                    <button onclick="closeSuccessModal()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <p class="text-gray-600 mb-6">Your tickets have been purchased. Check your email for confirmation.
+                    </p>
+                    <button onclick="closeSuccessModal()"
+                        class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                         Close
                     </button>
                 </div>
@@ -183,9 +214,9 @@
 
     <script>
         // const COINLEY_CONFIG = {
-        //     baseUrl:"http://localhost:9000",
-        //     apiKey:"fdb87b029d8fb531589df71e17a8cc55", // for ecstasy local
-        //     apiSecret:"5fe381f54803f100312117028542e952bd5d3d1d8b8df2dd1d0761c030cda4bf", // for ecstasy local
+        //     baseURL: "http://localhost:9000",
+        //     apiKey: "fdb87b029d8fb531589df71e17a8cc55", // for ecstasy local
+        //     apiSecret: "5fe381f54803f100312117028542e952bd5d3d1d8b8df2dd1d0761c030cda4bf", // for ecstasy local
         // };
         const COINLEY_CONFIG = {
             baseURL: 'https://talented-mercy-production.up.railway.app',
@@ -206,7 +237,7 @@
         let availableNetworks = [];
         let networkTokens = {};
 
-        document.addEventListener('DOMContentLoaded', async function() {
+        document.addEventListener('DOMContentLoaded', async function () {
             loadEvents();
             updateCartUI();
             await loadNetworks();
@@ -214,9 +245,14 @@
 
         async function loadNetworks() {
             try {
-                const response = await axios.get(`${COINLEY_CONFIG.baseURL}/api/networks`);
+                const response = await axios.get(`${COINLEY_CONFIG.baseURL}/api/networks`, {
+                    headers: {
+                        'X-API-Key': COINLEY_CONFIG.apiKey,
+                        'X-API-Secret': COINLEY_CONFIG.apiSecret
+                    }
+                });
                 availableNetworks = response.data.networks.filter(n => !n.isTestnet);
-                
+
                 // Sort networks by cost-effectiveness for small transactions
                 const sortedNetworks = availableNetworks.sort((a, b) => {
                     const costRanking = {
@@ -230,14 +266,14 @@
                     };
                     return (costRanking[a.shortName] || 99) - (costRanking[b.shortName] || 99);
                 });
-                
+
                 const networkSelect = document.getElementById('paymentNetwork');
                 networkSelect.innerHTML = sortedNetworks.map(network => {
-                    const costIndicator = network.shortName === 'polygon' || network.shortName === 'bsc' 
-                        ? ' 💚 (Low fees)' 
+                    const costIndicator = network.shortName === 'polygon' || network.shortName === 'bsc'
+                        ? ' 💚 (Low fees)'
                         : network.shortName === 'optimism' || network.shortName === 'arbitrum'
-                        ? ' ⚠️ (Higher fees)'
-                        : '';
+                            ? ' ⚠️ (Higher fees)'
+                            : '';
                     return `<option value="${network.shortName}">${network.name}${costIndicator}</option>`;
                 }).join('');
 
@@ -252,7 +288,7 @@
                     } else {
                         optimizationDiv.classList.add('hidden');
                     }
-                    
+
                     // Show warning for high-fee networks with specific fee estimates
                     const networkWarning = document.getElementById('networkWarning');
                     const highFeeNetworks = ['optimism', 'arbitrum', 'ethereum'];
@@ -265,7 +301,7 @@
                         if (selectedNetwork === 'optimism') {
                             // Optimism fee estimation based on actual data
                             estimatedFee = 0.61; // Based on your logs
-                            warningText = `⚠️ OPTIMISM ALERT: Expected fee ~$${estimatedFee} (${(estimatedFee/total*100).toFixed(0)}% of $${total.toFixed(2)} transaction). This is due to L1 data posting costs. Switch to Polygon for ~$0.01 fees.`;
+                            warningText = `⚠️ OPTIMISM ALERT: Expected fee ~$${estimatedFee} (${(estimatedFee / total * 100).toFixed(0)}% of $${total.toFixed(2)} transaction). This is due to L1 data posting costs. Switch to Polygon for ~$0.01 fees.`;
                         } else if (selectedNetwork === 'arbitrum') {
                             estimatedFee = 0.50;
                             warningText = `⚠️ ARBITRUM may charge ~$${estimatedFee} in fees. Consider Polygon or BSC for minimal fees.`;
@@ -308,7 +344,12 @@
                 const network = availableNetworks.find(n => n.shortName === networkShortName);
                 if (!network) return;
 
-                const response = await axios.get(`${COINLEY_CONFIG.baseURL}/api/networks/${network.id}/tokens`);
+                const response = await axios.get(`${COINLEY_CONFIG.baseURL}/api/networks/${network.id}/tokens`, {
+                    headers: {
+                        'X-API-Key': COINLEY_CONFIG.apiKey,
+                        'X-API-Secret': COINLEY_CONFIG.apiSecret
+                    }
+                });
                 networkTokens[networkShortName] = response.data.tokens;
 
                 const currencySelect = document.getElementById('paymentCurrency');
@@ -501,8 +542,8 @@
                 const amountWei = (amount * Math.pow(10, decimals)).toString();
 
                 const erc20ABI = [
-                    {"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"type":"function"},
-                    {"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"type":"function"}
+                    { "constant": false, "inputs": [{ "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" }], "name": "transfer", "outputs": [{ "name": "", "type": "bool" }], "type": "function" },
+                    { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "balanceOf", "outputs": [{ "name": "balance", "type": "uint256" }], "type": "function" }
                 ];
 
                 const tokenContract = new web3.eth.Contract(erc20ABI, tokenData.contractAddress);
@@ -608,47 +649,30 @@
                 const amountWei = (amount * Math.pow(10, decimals)).toString();
 
                 const erc20ABI = [
-                    {"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"type":"function"},
-                    {"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"type":"function"},
-                    {"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"type":"function"},
-                    {"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"type":"function"}
+                    { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }, { "name": "_spender", "type": "address" }], "name": "allowance", "outputs": [{ "name": "", "type": "uint256" }], "type": "function" },
+                    { "constant": false, "inputs": [{ "name": "_spender", "type": "address" }, { "name": "_value", "type": "uint256" }], "name": "approve", "outputs": [{ "name": "", "type": "bool" }], "type": "function" },
+                    { "constant": false, "inputs": [{ "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" }], "name": "transfer", "outputs": [{ "name": "", "type": "bool" }], "type": "function" },
+                    { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "balanceOf", "outputs": [{ "name": "balance", "type": "uint256" }], "type": "function" }
                 ];
 
                 const tokenContract = new web3.eth.Contract(erc20ABI, tokenData.contractAddress);
 
-                // updateStatus('Checking token allowance...', 'blue');
+                updateStatus('Checking token allowance...', 'blue');
 
-                // // Check existing allowance first to avoid unnecessary approval
-                // const existingAllowance = await tokenContract.methods
-                //     .allowance(userAccount, currentPayment.contractAddress)
-                //     .call();
+                // Check existing allowance first to avoid unnecessary approval
+                const existingAllowance = await tokenContract.methods
+                    .allowance(userAccount, currentPayment.contractAddress)
+                    .call();
 
-                // console.log('Existing allowance:', existingAllowance);
-                // console.log('Required amount:', amountWei);
+                console.log('Existing allowance:', existingAllowance);
+                console.log('Required amount:', amountWei);
 
-                    // ✅ CHECK BALANCE FIRST - Critical fix for "exceeds balance" error
-                updateStatus('Checking wallet balance...', 'blue');
-                
-                const userBalance = await tokenContract.methods.balanceOf(userAccount).call();
-                const userBalanceDecimal = parseFloat(userBalance) / Math.pow(10, decimals);
-                
-                console.log('💰 Balance Check:', {
-                    requiredAmount: amount,
-                    walletBalance: userBalanceDecimal,
-                    token: currency,
-                    sufficient: userBalanceDecimal >= amount
-                });
+          //      ✅ CHECK BALANCE FIRST - Critical fix for "exceeds balance" error
 
-                if (userBalanceDecimal < amount) {
-                    const shortfall = (amount - userBalanceDecimal).toFixed(2);
-                    throw new Error(
-                        `Insufficient ${currency} balance!\n\n` +
-                        `Required: ${amount} ${currency}\n` +
-                        `Available: ${userBalanceDecimal.toFixed(2)} ${currency}\n` +
-                        `Shortfall: ${shortfall} ${currency}\n\n` +
-                        `Please add more ${currency} to your wallet or reduce cart amount.`
-                    );
-                }
+
+
+
+        
 
                 updateStatus('Checking token allowance...', 'blue');
 
@@ -671,25 +695,25 @@
                 updateStatus('Executing payment...', 'blue');
 
                 const splitterABI = [{
-                    "inputs":[{
+                    "inputs": [{
                         "components": [
-                            {"name":"token","type":"address"},
-                            {"name":"amount","type":"uint256"},
-                            {"name":"paymentId","type":"string"},
-                            {"name":"recipient1","type":"address"},
-                            {"name":"recipient2","type":"address"},
-                            {"name":"recipient3","type":"address"},
-                            {"name":"recipient1Percentage","type":"uint256"},
-                            {"name":"recipient2Percentage","type":"uint256"},
-                            {"name":"recipient3Percentage","type":"uint256"}
+                            { "name": "token", "type": "address" },
+                            { "name": "amount", "type": "uint256" },
+                            { "name": "paymentId", "type": "string" },
+                            { "name": "recipient1", "type": "address" },
+                            { "name": "recipient2", "type": "address" },
+                            { "name": "recipient3", "type": "address" },
+                            { "name": "recipient1Percentage", "type": "uint256" },
+                            { "name": "recipient2Percentage", "type": "uint256" },
+                            { "name": "recipient3Percentage", "type": "uint256" }
                         ],
-                        "name":"params",
-                        "type":"tuple"
+                        "name": "params",
+                        "type": "tuple"
                     }],
-                    "name":"splitPayment",
-                    "outputs":[],
-                    "stateMutability":"nonpayable",
-                    "type":"function"
+                    "name": "splitPayment",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
                 }];
 
                 const splitterContract = new web3.eth.Contract(splitterABI, currentPayment.contractAddress);
@@ -756,7 +780,7 @@
                     try {
                         // Try to get actual L1 base fee from Optimism's GasPriceOracle
                         const gasPriceOracleAddress = '0x420000000000000000000000000000000000000F';
-                        const oracleABI = [{"constant":true,"inputs":[],"name":"l1BaseFee","outputs":[{"name":"","type":"uint256"}],"type":"function"}];
+                        const oracleABI = [{ "constant": true, "inputs": [], "name": "l1BaseFee", "outputs": [{ "name": "", "type": "uint256" }], "type": "function" }];
                         const oracle = new web3.eth.Contract(oracleABI, gasPriceOracleAddress);
                         l1BaseFee = await oracle.methods.l1BaseFee().call();
                         console.log('L1 Base Fee from Oracle:', l1BaseFee);
@@ -871,7 +895,7 @@
             } catch (error) {
                 console.error('Payment execution failed:', error);
                 updateStatus('Payment failed: ' + error.message, 'red');
-                
+
                 if (currentPayment && currentPayment.id) {
                     await axios.post(`${COINLEY_CONFIG.baseURL}/api/payments/fail`, {
                         paymentId: currentPayment.id,
@@ -966,7 +990,7 @@
             document.getElementById('events').scrollIntoView({ behavior: 'smooth' });
         }
 
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.classList.contains('bg-black')) {
                 closeCart();
                 closePaymentModal();
@@ -975,4 +999,5 @@
         });
     </script>
 </body>
+
 </html>
